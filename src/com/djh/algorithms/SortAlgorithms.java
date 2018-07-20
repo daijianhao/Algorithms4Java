@@ -9,10 +9,13 @@ public class SortAlgorithms {
 	
 	public static void main(String[] args) {
 		int[] data={5,3,8,7,5,6,2,1,4,12,89,55,34,51,61,20,78,1025,36};//测试数据
+		int[] sortData;
 		
-		int[] sortData = selectSort(data);
+//		int[] sortData = selectSort(data);
+//		print(sortData);
+		
+		sortData = insertSort(data);
 		print(sortData);
-
 	}
 	
 	/**
@@ -44,6 +47,22 @@ public class SortAlgorithms {
 				data[i]=data[i]+data[minIndex];
 				data[minIndex]=data[i]-data[minIndex];
 				data[i]=data[i]-data[minIndex];
+			}
+		}
+		return data;
+	}
+	
+	/**
+	 * 插入排序
+	 * @param data
+	 * @return
+	 */
+	public static int[] insertSort(int[] data){
+		for(int i=1;i<data.length;++i){
+			for(int j=i;j>0&&data[j]<data[j-1];j--){
+				data[j]=data[j]+data[j-1];
+				data[j-1]=data[j]-data[j-1];
+				data[j]=data[j]-data[j-1];
 			}
 		}
 		return data;
