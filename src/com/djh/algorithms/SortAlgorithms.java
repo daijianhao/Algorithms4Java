@@ -14,7 +14,9 @@ public class SortAlgorithms {
 //		int[] sortData = selectSort(data);
 //		print(sortData);
 		
-		sortData = insertSort(data);
+	/*	sortData = insertSort(data);
+		print(sortData);*/
+		sortData = shellSort(data);
 		print(sortData);
 	}
 	
@@ -64,6 +66,33 @@ public class SortAlgorithms {
 				data[j-1]=data[j]-data[j-1];
 				data[j]=data[j]-data[j-1];
 			}
+		}
+		return data;
+	}
+	
+	/**
+	 * 希尔排序
+	 * @param datas
+	 * @return
+	 */
+	public static int[] shellSort(int[] data){
+		int N=data.length;
+		int h=1;
+		while(h<N/3){
+			//构造递减序列
+			h=3*h+1;
+		}
+		while(h>=1){
+			for(int i=h;i<N;i++){
+				//将data[i]插入到data[i-h]、data[i-2*h].data[i-3*h]中，此处运用的了插入排序的思想
+				for(int j=i;j>=h&&data[j]<data[j-h];j-=h){
+					data[j]=data[j]+data[j-h];
+					data[j-h]=data[j]-data[j-h];
+					data[j]=data[j]-data[j-h];
+				}
+			}
+			//每排完一个h序列，h=h/3
+			h=h/3;
 		}
 		return data;
 	}
